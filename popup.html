@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Nhắc đứng dậy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h2>⏰ Nhắc đứng dậy</h2>
+  <label for="interval">Khoảng cách (phút):</label>
+  <select id="interval">
+    <option value="1">1</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20" selected>20</option>
+    <option value="30">30</option>
+    <option value="60">60</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="enableToggle" checked /> Bật nhắc nhở
+  </label>
+
+  <p class="note">*Âm thanh sẽ phát khi đến giờ nhắc.</p>
+  <audio id="chime" src="chime.mp3" preload="auto"></audio>
+  <audio id="alert-alarm" src="alert-alarm.wav" preload="auto"></audio>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

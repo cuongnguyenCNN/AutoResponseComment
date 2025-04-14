@@ -1,0 +1,91 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 15px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, color 0.3s;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+select,
+input[type="checkbox"] {
+  margin-top: 5px;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+
+.note {
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+  body {
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    color: #333;
+  }
+
+  label,
+  .note,
+  h2 {
+    color: #333;
+  }
+
+  select,
+  input[type="checkbox"] {
+    border-color: #ccc;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(to right, #1f1f1f, #2c2c2c);
+    color: #eee;
+  }
+
+  label,
+  .note,
+  h2 {
+    color: #eee;
+  }
+
+  select,
+  input[type="checkbox"] {
+    border-color: #555;
+    background: #222;
+    color: #eee;
+  }
+}
