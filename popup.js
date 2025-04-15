@@ -3,13 +3,11 @@ const toggle = document.getElementById("enableToggle");
 const chime = document.getElementById("chime");
 const alertAlarm = document.getElementById("alert-alarm");
 
-// Khôi phục cài đặt
 chrome.storage.sync.get(["interval", "enabled"], (data) => {
   if (data.interval) intervalSelect.value = data.interval;
   toggle.checked = data.enabled !== false;
 });
 
-// Lưu thay đổi
 intervalSelect.addEventListener("change", () => {
   const minutes = parseInt(intervalSelect.value);
   chrome.storage.sync.set({ interval: minutes });
@@ -26,8 +24,14 @@ toggle.addEventListener("change", () => {
     chrome.alarms.clearAll();
   }
 });
-
-// Lắng nghe để phát âm thanh
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "playSound") {
+    const audio = new Audio("chime.mp3");
+    audio.play().catch((err) => {
+      console.log("Không phát được âm thanh:", err);
+    });
+  }
+});
 chrome.runtime.onMessage.addListener((request) => {
   if (request.action === "playSound") {
     chime.play();
