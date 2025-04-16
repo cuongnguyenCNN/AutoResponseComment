@@ -1,0 +1,15 @@
+/* default: light */
+body {
+    background: #ffffff;
+    color: #000000;
+}
+
+body:has(#theme-select[value="dark"]) {
+    background: #121212;
+    color: #ffffff;
+}
+
+body:has(#theme-select[value="custom"]) {
+    background: #e0f7fa;
+    color: #00695c;
+}

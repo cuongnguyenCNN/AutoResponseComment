@@ -46,7 +46,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
       if (data.enabled) {
         chrome.tabs.create(
           {
-            url: chrome.runtime.getURL("audio.html"),
+            url: chrome.runtime.getURL("../audio/audio.html"),
             active: true,
           },
           function (tab) {

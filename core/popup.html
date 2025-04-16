@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Nhắc đứng dậy</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 p-4 w-80 font-sans">
+  <h2>⏰ Nhắc đứng dậy khởi động</h2>
+  <label for="interval">Khoảng cách (phút):</label>
+  <select id="interval">
+    <option value="1">1</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20" selected>20</option>
+    <option value="30">30</option>
+    <option value="60">60</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="enableToggle" checked /> Bật nhắc nhở
+  </label>
+
+  <p class="note">*Âm thanh sẽ phát khi đến giờ nhắc.</p>
+  <audio id="chime" src="../audio/chime.mp3" preload="auto"></audio>
+  <!-- <audio id="alert-alarm" src="../audio/alert-alarm.wav" preload="auto"></audio> -->
+
+
+  <div id="upgradeBtn">
+    <input type="text" id="licenseKey" placeholder="Nhập mã Pro" />
+    <button id="activateProBtn">Kích hoạt Pro</button>
+    <div id="proStatus"></div>
+  </div>
+  <!-- Vùng tính năng Pro -->
+  <div id="proFeature" style="display:none;">
+    <p>🎉 Bạn đang dùng phiên bản <b>Pro</b>!</p>
+    <label for="sound-select">🌿 Chọn âm thanh:</label>
+    <select id="sound-select">
+      <optgroup label="Thiên nhiên">
+        <option value="forest">Rừng</option>
+        <option value="stream">Suối</option>
+        <option value="bird">Chim hót</option>
+      </optgroup>
+      <optgroup label="Vui nhộn">
+        <option value="funny1">Funny 1</option>
+        <option value="funny2">Funny 2</option>
+      </optgroup>
+    </select>
+    <button id="previewBtn">▶ Nghe thử</button>
+    <label for="volume">🔊 Âm lượng:</label>
+    <input type="range" id="volume" min="0" max="1" step="0.01" />
+    <label for="sound-select">🌿 Bài tập khởi động:</label>
+    <div id="exercise-box" style="padding:10px; background:#f5f5f5; border-radius:8px;">
+      💪 Bài tập hôm nay: (Đang tải...)
+    </div>
+    <button id="newExercise">Đổi bài tập</button>
+
+    <label for="sound-select">🌿 Chỉnh sửa giao diện:</label>
+    <link id="theme-style" rel="stylesheet" href="pro/themes.css">
+    <select id="theme-select">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="custom">Custom</option>
+    </select>
+
+  </div>
+  <p class="text-xs text-gray-500 text-center mt-6">Made with 💙 Stand Up Reminder+</p>
+</body>
+<script src="../pro/pro.js"></script>
+<script src="../pro/exercises.js"></script>
+<script src="popup.js"></script>
+
+</html>
