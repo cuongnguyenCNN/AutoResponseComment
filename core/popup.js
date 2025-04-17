@@ -6,6 +6,7 @@ const activateProBtn = document.getElementById("activateProBtn");
 const soundSelect = document.getElementById("sound-select");
 const volumeSlider = document.getElementById("volume");
 const previewBtn = document.getElementById("previewBtn");
+const pausing = document.getElementById("pausing");
 
 chrome.storage.sync.get(["sound"], ({ sound }) => {
   if (sound) {
@@ -20,10 +21,23 @@ soundSelect.addEventListener("change", () => {
 volumeSlider.addEventListener("input", () => {
   chrome.storage.sync.set({ volume: parseFloat(volumeSlider.value) });
 });
+let currentAudio = null;
 previewBtn.addEventListener("click", () => {
-  const audio = new Audio(chrome.runtime.getURL(`../audio/chime.mp3`));
-  audio.volume = parseFloat(volumeSlider.value);
-  audio.play();
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(
+    chrome.runtime.getURL(`../audio/${soundSelect.value}.mp3`)
+  );
+  currentAudio.volume = parseFloat(volumeSlider.value);
+  currentAudio.play();
+});
+pausing.addEventListener("click", () => {
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
 });
 chrome.storage.sync.get(["interval", "enabled"], (data) => {
   if (data.interval) intervalSelect.value = data.interval;
@@ -51,7 +65,7 @@ activateProBtn.addEventListener("click", () => {
 });
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "playSound") {
-    const audio = new Audio("chime.mp3");
+    const audio = new Audio(`../audio/${soundSelect}`);
     audio.play().catch((err) => {
       console.log("Không phát được âm thanh:", err);
     });

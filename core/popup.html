@@ -5,10 +5,9 @@
   <meta charset="UTF-8" />
   <title>Nhắc đứng dậy</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800 p-4 w-80 font-sans">
+<body>
   <h2>⏰ Nhắc đứng dậy khởi động</h2>
   <label for="interval">Khoảng cách (phút):</label>
   <select id="interval">
@@ -37,20 +36,20 @@
   </div>
   <!-- Vùng tính năng Pro -->
   <div id="proFeature" style="display:none;">
-    <p>🎉 Bạn đang dùng phiên bản <b>Pro</b>!</p>
+    <!-- <p>🎉 Bạn đang dùng phiên bản <b>Pro</b>!</p> -->
     <label for="sound-select">🌿 Chọn âm thanh:</label>
     <select id="sound-select">
       <optgroup label="Thiên nhiên">
         <option value="forest">Rừng</option>
         <option value="stream">Suối</option>
-        <option value="bird">Chim hót</option>
+        <option value="birds">Chim hót</option>
       </optgroup>
       <optgroup label="Vui nhộn">
         <option value="funny1">Funny 1</option>
         <option value="funny2">Funny 2</option>
       </optgroup>
     </select>
-    <button id="previewBtn">▶ Nghe thử</button>
+    <button id="previewBtn">▶ Nghe thử</button> <button id="pausing">⏸ Dừng</button>
     <label for="volume">🔊 Âm lượng:</label>
     <input type="range" id="volume" min="0" max="1" step="0.01" />
     <label for="sound-select">🌿 Bài tập khởi động:</label>
@@ -68,7 +67,7 @@
     </select>
 
   </div>
-  <p class="text-xs text-gray-500 text-center mt-6">Made with 💙 Stand Up Reminder+</p>
+  <p class="text-xs text-gray-500 text-center mt-6">Made with 💙 Stand Up Reminder+ by servicewebnow.com</p>
 </body>
 <script src="../pro/pro.js"></script>
 <script src="../pro/exercises.js"></script>

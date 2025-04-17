@@ -1,9 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Stand Up Reminder+",
-  "version": "1.1",
+  "version": "1.4",
   "description": "Nhắc bạn đứng dậy định kỳ với thời gian tùy chọn.",
-  "permissions": ["notifications", "alarms", "storage"],
+  "permissions": ["notifications", "alarms", "storage", "tabs"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "audio/audio.html",
+        "audio/chime.mp3",
+        "audio/birds.mp3",
+        "audio/forest.mp3",
+        "audio/stream.mp3",
+        "audio/alert-alarm.wav"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   },

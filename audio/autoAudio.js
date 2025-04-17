@@ -1,16 +1,22 @@
 const chime = document.getElementById("chime");
 const alertAlarm = document.getElementById("alert-alarm");
 const soundSelect = document.getElementById("sound-select");
+const birds = document.getElementById("birds");
+const stream = document.getElementById("stream");
+const forest = document.getElementById("forest");
 function OpenAudio() {
   debugger;
   chrome.storage.sync.get(["sound", "volume"], ({ sound, volume }) => {
     let audioToPlay;
     switch (sound) {
       case "forest":
-        audioToPlay = document.getElementById("chime");
+        audioToPlay = document.getElementById("forest");
         break;
       case "stream":
-        audioToPlay = document.getElementById("alert-alarm");
+        audioToPlay = document.getElementById("stream");
+        break;
+      case "birds":
+        audioToPlay = document.getElementById("birds");
         break;
       default:
         audioToPlay = document.getElementById("chime"); // fallback mặc định
