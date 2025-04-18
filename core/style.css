@@ -72,3 +72,13 @@ button {
 button:hover {
   background: #2563eb;
 }
+
+.exercise-box {
+  margin-top: 10px;
+}
+
+.exercise-box img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

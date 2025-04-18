@@ -13,3 +13,13 @@ function getRandomExercise() {
   return exercises[Math.floor(Math.random() * exercises.length)];
 }
 window.getRandomExercise = getRandomExercise;
+const exercisesStretch = [
+  "pro/exercises/deskstretch.png",
+  "pro/exercises/deskstretch.png",
+  "pro/exercises/deskstretch.png",
+  "pro/exercises/deskstretch.png",
+  "pro/exercises/deskstretch.png",
+];
+
+// Random GIF mỗi lần mở
+const randomIndex = Math.floor(Math.random() * exercisesStretch.length);
