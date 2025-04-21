@@ -3,18 +3,55 @@
 
 <head>
     <meta charset="UTF-8" />
+    <style>
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .pulse-text {
+            animation: pulse 2s infinite;
+            font-weight: bold;
+            color: #d32f2f;
+            /* đỏ nổi bật */
+        }
+    </style>
 </head>
 
-<body>
-    <div>HÃY ĐỨNG DẬY VÀ KHỞI ĐỘNG</div>
-    <audio id="chime" src="chime.mp3" preload="auto"></audio>
-    <audio id="birds" src="birds.mp3" preload="auto"></audio>
-    <audio id="forest" src="forest.mp3" preload="auto"></audio>
-    <audio id="stream" src="stream.mp3" preload="auto"></audio>
+<body
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(to bottom right, #e0f7fa, #f1f8e9); font-family: Arial, sans-serif; text-align: center; color: #2e7d32;">
+    <h1 style="font-size: 2.5em;">⏰ Đã đến lúc vận động!</h1>
+    <div class="pulse-text" style="font-size: 1.8em; margin: 20px 0;">HÃY ĐỨNG DẬY VÀ KHỞI ĐỘNG 💪</div>
+    <p style="max-width: 600px; font-size: 1.1em; line-height: 1.6;">
+        Một vài phút đứng dậy, vươn vai, hít thở sâu – giúp máu lưu thông, tỉnh táo hơn và tái tạo năng lượng cho tâm
+        trí bạn. <br><br>
+        👉 Bạn xứng đáng với một cơ thể khỏe mạnh và tinh thần minh mẫn.
+    </p>
+
+    <audio id="chime" src="chime.mp3" preload="auto" loop></audio>
+    <audio id="birds" src="birds.mp3" preload="auto" loop></audio>
+    <audio id="forest" src="forest.mp3" preload="auto" loop></audio>
+    <audio id="stream" src="stream.mp3" preload="auto" loop></audio>
     <!-- <audio id="chime" autoplay>
         <source src="chime.mp3" type="audio/mpeg" />
     </audio> -->
-    <audio id="alert-alarm" src="alert-alarm.wav" preload="auto"></audio>
+    <audio id="alert-alarm" src="alert-alarm.wav" preload="auto" loop></audio>
+
+    <audio id="funny1" src="funny1.mp3" preload="auto" loop></audio>
+    <audio id="funny2" src="funny2.mp3" preload="auto" loop></audio>
+    <audio id="funny3" src="funny3.mp3" preload="auto" loop></audio>
     <!-- <audio id="alert-alarm">
         <source src="alert-alarm.wav" type="audio/mpeg" />
     </audio> -->

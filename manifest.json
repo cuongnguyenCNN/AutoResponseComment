@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Stand Up Reminder+",
-  "version": "1.4",
+  "version": "1.6",
   "description": "Nhắc bạn đứng dậy định kỳ với thời gian tùy chọn.",
   "permissions": ["notifications", "alarms", "storage", "tabs"],
   "web_accessible_resources": [
@@ -22,9 +22,9 @@
   },
   "action": {
     "default_popup": "../core/popup.html",
-    "default_icon": "icons/icon.png"
+    "default_icon": "icons/standupreminder.png"
   },
   "icons": {
-    "128": "icons/icon.png"
+    "128": "icons/standupreminder.png"
   }
 }

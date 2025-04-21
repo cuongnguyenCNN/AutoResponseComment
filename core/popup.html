@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <h2>⏰ Nhắc đứng dậy khởi động</h2>
+  <!-- <h2>⏰ Nhắc đứng dậy khởi động</h2>
   <label for="interval">Khoảng cách (phút):</label>
   <select id="interval">
     <option value="1">1</option>
@@ -26,17 +26,21 @@
 
   <p class="note">*Âm thanh sẽ phát khi đến giờ nhắc.</p>
   <audio id="chime" src="../audio/chime.mp3" preload="auto"></audio>
-  <!-- <audio id="alert-alarm" src="../audio/alert-alarm.wav" preload="auto"></audio> -->
 
-
-  <div id="upgradeBtn">
+  <div id="upgradeBtn" style="display: none;">
     <input type="text" id="licenseKey" placeholder="Nhập mã Pro" />
     <button id="activateProBtn">Kích hoạt Pro</button>
     <div id="proStatus"></div>
+    <p style="margin-top: 8px; font-size: 13px;">
+      Chưa có mã Pro?
+      <a href="https://standupreminder.netlify.app/#pricing" target="_blank"
+        style="color: #007bff; text-decoration: underline;">
+        Nâng cấp ngay để mở khóa tính năng nâng cao 💎
+      </a>
+    </p>
   </div>
-  <!-- Vùng tính năng Pro -->
-  <div id="proFeature" style="display:none;">
-    <!-- <p>🎉 Bạn đang dùng phiên bản <b>Pro</b>!</p> -->
+
+  <div id="proFeature">
     <label for="sound-select">🌿 Chọn âm thanh:</label>
     <select id="sound-select">
       <optgroup label="Thiên nhiên">
@@ -68,12 +72,149 @@
       <option value="dark">Dark</option>
       <option value="custom">Custom</option>
     </select>
-
   </div>
-  <p class="text-xs text-gray-500 text-center mt-6">Made with 💙 Stand Up Reminder+ by servicewebnow.com</p>
+  <div id="pro_trial_start">
+    <p style="margin-top: 8px; font-size: 13px;">
+      Chưa có mã Pro?
+      <a href="https://standupreminder.netlify.app/#pricing" target="_blank"
+        style="color: #007bff; text-decoration: underline;">
+        Nâng cấp ngay để mở khóa tính năng nâng cao 💎
+      </a>
+    </p>
+    <div id="pro-status">Đang kiểm tra trạng thái dùng thử...</div>
+    <div id="trial-status">Loading...</div>
+    <div> <button id="trial-btn" class="btn">Dùng thử Pro 1 ngày</button></div>
+  </div>
+  <p class="text-xs text-gray-500 text-center mt-6">Made with 💙 Stand Up Reminder+ by servicewebnow.com</p> -->
+
+  <div class="">
+    <h2>⏰ Nhắc đứng dậy khởi động</h2>
+    <p class="note">*Âm thanh sẽ phát khi đến giờ nhắc.</p>
+    <!-- Cài đặt thời gian -->
+    <div class="card">
+      <label for="interval">⏳ Khoảng cách (phút):</label>
+      <select id="interval">
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="60">60</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="enableToggle" checked />
+        Bật nhắc nhở
+      </label>
+    </div>
+    <div id="proFeature">
+      <!-- Bài tập -->
+
+      <!-- <label>💪 Bài tập khởi động:</label>
+        <div id="exercise-box">Đang tải...</div>
+        <img width="50px" height="50px" id="exercise-gif" src="../pro/exercises/shoulderroll.png" alt="Exercise" />
+        <button id="newExercise">Đổi bài tập</button> -->
+
+      <div style="
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 20px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #f0f8ff, #ffffff);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        font-family: 'Segoe UI', sans-serif;
+        max-width: 420px;
+        margin: 20px auto;
+      ">
+
+        <img id="exercise-gif" src="../pro/exercises/shoulderroll.png" width="60" height="60"
+          style="border-radius: 10px; border: 2px solid #007bff;" />
+
+        <div style="flex: 1;">
+          <label style="font-weight: 600; color: #333; font-size: 15px;">
+            💪 Bài tập khởi động:
+          </label>
+          <div id="exercise-box" style="margin: 5px 0; color: #444; font-size: 14px;">
+            Đang tải...
+          </div>
+          <button id="newExercise" style="
+                        padding: 6px 12px;
+                        font-size: 14px;
+                        background-color: #007bff;
+                        border: none;
+                        color: white;
+                        border-radius: 6px;
+                        cursor: pointer;
+                      ">
+            🔁 Đổi bài tập
+          </button>
+        </div>
+      </div>
+      <!-- Âm thanh -->
+      <div class="card">
+        <label for="sound-select">🔔 Chọn âm thanh:</label>
+        <select id="sound-select">
+          <optgroup label="Thiên nhiên">
+            <option value="forest">Rừng</option>
+            <option value="stream">Suối</option>
+            <option value="birds">Chim hót</option>
+          </optgroup>
+          <optgroup label="Vui nhộn">
+            <option value="funny1">Funny 1</option>
+            <option value="funny2">Funny 2</option>
+            <option value="funny3">Funny 3</option>
+          </optgroup>
+        </select>
+        <div style="margin-top: 5px;">
+          <button id="previewBtn">▶ Nghe thử</button>
+          <button id="pausing">⏸ Dừng</button>
+        </div>
+        <label for="volume">🔊 Âm lượng:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" />
+      </div>
+
+
+
+      <!-- Giao diện -->
+      <div class="card">
+        <link id="theme-style" rel="stylesheet" href="pro/themes.css">
+        <label for="theme-select">🎨 Giao diện:</label>
+        <select id="theme-select">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+    </div>
+    <!-- Pro -->
+    <div class="card" id="upgradeBtn">
+      <input type="text" id="licenseKey" placeholder="Nhập mã Pro" value="" />
+      <button id="activateProBtn">Kích hoạt Pro</button>
+      <div id="proMessage" style="margin-top: 10px; font-weight: bold;"></div>
+      <div id="proStatus"></div>
+      <a href="https://standupreminder.netlify.app/#pricing" target="_blank">🔓 Nâng cấp Pro ngay!!!. Mở tính năng Pro
+      </a>
+    </div>
+
+    <!-- Dùng thử -->
+    <div class="card" id="pro_trial_start">
+      <div id="trial-status">Loading...</div>
+      <div id="pro-status">Đang kiểm tra trạng thái dùng thử...</div>
+      <!-- <button id="trial-btn">🎁 Dùng thử Pro 1 ngày</button> -->
+      <a href="https://standupreminder.netlify.app/#pricing" target="_blank">🔓 Nâng cấp Pro ngay!!!. Mở tính năng Pro
+      </a>
+    </div>
+
+    <p class="credit">Made with 💙 Stand Up Reminder by servicewebnow.com</p>
+
+    <audio id="chime" src="../audio/chime.mp3" preload="auto"></audio>
+  </div>
 </body>
 <script src="../pro/pro.js"></script>
 <script src="../pro/exercises.js"></script>
+<script src="../pro/trial.js"></script>
 <script src="popup.js"></script>
 
 </html>

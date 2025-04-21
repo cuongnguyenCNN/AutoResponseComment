@@ -2,11 +2,13 @@ const intervalSelect = document.getElementById("interval");
 const toggle = document.getElementById("enableToggle");
 const chime = document.getElementById("chime");
 const alertAlarm = document.getElementById("alert-alarm");
-const activateProBtn = document.getElementById("activateProBtn");
 const soundSelect = document.getElementById("sound-select");
 const volumeSlider = document.getElementById("volume");
 const previewBtn = document.getElementById("previewBtn");
 const pausing = document.getElementById("pausing");
+const statusEl = document.getElementById("trial-status");
+// const btn = document.getElementById("trial-btn");
+const pro_trial_start = document.getElementById("pro_trial_start");
 
 chrome.storage.sync.get(["sound"], ({ sound }) => {
   if (sound) {
@@ -60,9 +62,6 @@ toggle.addEventListener("change", () => {
     chrome.alarms.clearAll();
   }
 });
-activateProBtn.addEventListener("click", () => {
-  window.checkAndActivatePro();
-});
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "playSound") {
     const audio = new Audio(`../audio/${soundSelect}`);
@@ -77,21 +76,11 @@ chrome.runtime.onMessage.addListener((request) => {
     alertAlarm.play();
   }
 });
-chrome.storage.local.get(["isPro"], (data) => {
-  if (data.isPro) {
-    // Hiển thị tính năng Pro
-    document.getElementById("proFeature").style.display = "block";
-    document.getElementById("upgradeBtn").style.display = "none";
-  } else {
-    // Ẩn hoặc hiển thị nút nâng cấp
-    document.getElementById("proFeature").style.display = "none";
-    document.getElementById("upgradeBtn").style.display = "block";
-  }
-});
 document.getElementById("exercise-box").innerText = window.getRandomExercise();
 document.getElementById("newExercise").addEventListener("click", () => {
   document.getElementById("exercise-box").innerText =
     window.getRandomExercise();
+  document.getElementById("exercise-gif").src = window.getRandomExerciseSrc();
 });
 document.getElementById("theme-select").addEventListener("change", function () {
   const theme = this.value;
@@ -103,3 +92,58 @@ function applyTheme(theme) {
   const style = document.getElementById("theme-style");
   style.href = `../pro/themes.css#${theme}`;
 }
+
+function enableProFeatures() {
+  // Bật nút, mở khóa UI nâng cao, v.v...
+}
+
+function disableProFeatures() {
+  // Ẩn, disable UI, gợi ý mua bản Pro
+}
+function updateStatus() {
+  const status = document.getElementById("pro-status");
+  checkProTrial((isActive, minutesLeft) => {
+    const days = Math.floor(minutesLeft / (60 * 24));
+    const hours = Math.floor((minutesLeft % (60 * 24)) / 60);
+    const mins = Math.floor(minutesLeft % 60);
+    if (isActive) {
+      statusEl.textContent = "🎉 Bạn đang dùng thử Pro!";
+      statusEl.className = "pro";
+      status.innerText = `🎁 Pro Trial: còn lại ${days} ngày ${hours} giờ ${mins} phút`;
+      document.getElementById("proFeature").style.display = "block";
+      document.getElementById("upgradeBtn").style.display = "none";
+    } else {
+      statusEl.textContent = "Bạn chưa kích hoạt Pro.";
+      statusEl.className = "expired";
+      status.innerText = `⏰ Dùng thử Pro đã hết hạn`;
+      document.getElementById("proFeature").style.display = "none";
+      document.getElementById("upgradeBtn").style.display = "block";
+      chrome.storage.local.set({ isTrial: false });
+    }
+  });
+}
+// btn.addEventListener("click", () => {
+//   startProTrial(() => {
+//     updateStatus();
+//   });
+// });
+updateStatus();
+chrome.storage.local.get(["isPro", "isTrial"], (data) => {
+  if (data.isTrial) {
+    // Hiển thị tính năng Pro
+    document.getElementById("proFeature").style.display = "block";
+    document.getElementById("upgradeBtn").style.display = "none";
+    pro_trial_start.style.display = "block";
+  } else {
+    if (data.isPro) {
+      document.getElementById("proFeature").style.display = "block";
+      document.getElementById("upgradeBtn").style.display = "none";
+      pro_trial_start.style.display = "none";
+    } else {
+      // Ẩn hoặc hiển thị nút nâng cấpƯ
+      document.getElementById("proFeature").style.display = "none";
+      document.getElementById("upgradeBtn").style.display = "block";
+      pro_trial_start.style.display = "block";
+    }
+  }
+});

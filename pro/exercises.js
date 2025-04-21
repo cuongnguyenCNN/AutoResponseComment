@@ -14,12 +14,11 @@ function getRandomExercise() {
 }
 window.getRandomExercise = getRandomExercise;
 const exercisesStretch = [
-  "pro/exercises/deskstretch.png",
-  "pro/exercises/deskstretch.png",
-  "pro/exercises/deskstretch.png",
-  "pro/exercises/deskstretch.png",
-  "pro/exercises/deskstretch.png",
+  "../pro/exercises/deskstretch.png",
+  "../pro/exercises/necktilt.png",
+  "../pro/exercises/shoulderroll.png",
 ];
-
-// Random GIF mỗi lần mở
-const randomIndex = Math.floor(Math.random() * exercisesStretch.length);
+function getRandomExerciseSrc() {
+  return exercisesStretch[Math.floor(Math.random() * exercisesStretch.length)];
+}
+window.getRandomExerciseSrc = getRandomExerciseSrc;

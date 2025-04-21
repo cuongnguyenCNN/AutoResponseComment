@@ -5,7 +5,25 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.alarms.create("standUpReminder", { periodInMinutes: minutes });
   });
 });
+const TRIAL_DURATION_HOURS = 24;
 
+// Khi extension được cài
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    const now = Date.now();
+    chrome.storage.local.set(
+      { pro_trial_start: now, isPro: false, isTrial: true },
+      () => {
+        console.log("Dùng thử Pro được kích hoạt trong 24h từ:", new Date(now));
+      }
+    );
+    chrome.storage.sync.set({
+      interval: 5,
+      sound: "alert-alarm",
+      enabled: true,
+    });
+  }
+});
 // Khi người dùng đổi cài đặt => update alarm
 chrome.storage.onChanged.addListener((changes) => {
   if (changes.interval) {
@@ -21,7 +39,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "standUpReminder") {
     chrome.notifications.create({
       type: "basic",
-      iconUrl: "../icons/icon.png",
+      iconUrl: "icons/icon.png",
       title: "Đã đến lúc đứng dậy!",
       message: "Hãy đứng lên và đi lại một chút nhé 🧍‍♂️",
       priority: 2,
@@ -38,7 +56,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
           function (tab) {
             setTimeout(() => {
               chrome.tabs.remove(tab.id); // đóng lại sau 5 giây
-            }, 10000);
+            }, 30000);
           }
         );
         // chrome.runtime.sendMessage({ type: "playSound" });
